@@ -3,6 +3,7 @@
     <div v-if="disc.length > 0" class="container-card">
       <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
     </div>
+    <!-- Bonus da ultimare  -->
     <div v-else>Loading..</div>
   </div>
 </template>
