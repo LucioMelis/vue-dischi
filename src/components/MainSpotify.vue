@@ -1,10 +1,19 @@
 <template>
-  <div></div>
+  <div class="container-main">
+    <div class="container-card">
+      <CardDisc />
+    </div>
+  </div>
 </template>
 
 <script>
+import CardDisc from "../components/CardDisc.vue";
+
 export default {
   name: "MainSpotify",
+  components: {
+    CardDisc,
+  },
 };
 </script>
 
