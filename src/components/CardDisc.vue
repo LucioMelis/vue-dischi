@@ -5,6 +5,9 @@
 <script>
 export default {
   name: "CardDisc",
+  props: {
+    songdisc: Object,
+  },
 };
 </script>
 

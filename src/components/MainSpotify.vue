@@ -1,18 +1,33 @@
 <template>
   <div class="container-main">
     <div class="container-card">
-      <CardDisc />
+      <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
     </div>
   </div>
 </template>
 
 <script>
 import CardDisc from "../components/CardDisc.vue";
+import axios from "axios";
 
 export default {
   name: "MainSpotify",
   components: {
     CardDisc,
+  },
+  data() {
+    return {
+      disc: [],
+    };
+  },
+  mounted() {
+    axios
+      .get("https://flynn.boolean.careers/exercises/api/array/music")
+      .then((response) => {
+        this.disc = response.data.response;
+        // console.log(this.disc);
+        // console.log(this.disc[0]);
+      });
   },
 };
 </script>
@@ -20,4 +35,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "src/variabili.scss";
+.container-main {
+  height: calc(100vh - 74px);
+  background-color: $bg-primary;
+}
 </style>
