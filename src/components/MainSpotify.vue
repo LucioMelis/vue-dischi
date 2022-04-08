@@ -26,7 +26,7 @@ export default {
       .then((response) => {
         this.disc = response.data.response;
         // console.log(this.disc);
-        // console.log(this.disc[0]);
+        console.log(this.disc[0]);
       });
   },
 };
@@ -38,5 +38,14 @@ export default {
 .container-main {
   height: calc(100vh - 74px);
   background-color: $bg-primary;
+  display: flex;
+  align-items: center;
+  .container-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    width: 70%;
+    margin: auto;
+  }
 }
 </style>
