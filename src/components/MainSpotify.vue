@@ -1,8 +1,9 @@
 <template>
   <div class="container-main">
-    <div class="container-card">
+    <div v-if="disc.length > 0" class="container-card">
       <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
     </div>
+    <div v-else>Loading..</div>
   </div>
 </template>
 
