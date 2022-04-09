@@ -4,18 +4,22 @@
       <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
     </div>
     <!-- Bonus da ultimare  -->
-    <div v-else>Loading..</div>
+    <div class="spinner" v-else>
+      <Loading />
+    </div>
   </div>
 </template>
 
 <script>
 import CardDisc from "../components/CardDisc.vue";
 import axios from "axios";
+import Loading from "../components/Loading.vue";
 
 export default {
   name: "MainSpotify",
   components: {
     CardDisc,
+    Loading,
   },
   data() {
     return {
@@ -47,6 +51,11 @@ export default {
     width: 70%;
     margin: auto;
     padding: 30px 0;
+  }
+  .spinner {
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
   }
 }
 </style>
