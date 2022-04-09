@@ -38,16 +38,15 @@ export default {
 <style scoped lang="scss">
 @import "src/variabili.scss";
 .container-main {
-  height: calc(100vh - 74px);
+  min-height: calc(100vh - 74px);
   background-color: $bg-primary;
-  display: flex;
-  align-items: center;
   .container-card {
     display: flex;
     flex-wrap: wrap;
     gap: 15px 30px;
     width: 70%;
     margin: auto;
+    padding: 30px 0;
   }
 }
 </style>
