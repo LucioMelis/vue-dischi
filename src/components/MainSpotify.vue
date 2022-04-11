@@ -3,17 +3,25 @@
     <!-- Sezione Option -->
     <div class="select-disc">
       <h4>Seleziona il genere:</h4>
-      <select name="disc-option">
-        <option value="all">All</option>
-        <option value="pop">Pop</option>
-        <option value="metal">Metal</option>
-        <option value="rock">Rock</option>
-        <option value="jazz">Jazz</option>
+      <select
+        name="disc-option"
+        v-model="genereSelezionato"
+        @change="cambioGenere()"
+      >
+        <option value="All">All</option>
+        <option value="Pop">Pop</option>
+        <option value="Metal">Metal</option>
+        <option value="Rock">Rock</option>
+        <option value="Jazz">Jazz</option>
       </select>
     </div>
     <!-- Sezione Dischi  -->
     <div v-if="disc.length > 0" class="container-card">
-      <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
+      <CardDisc
+        v-for="(song, index) in cambioGenere()"
+        :key="index"
+        :songdisc="song"
+      />
     </div>
     <!-- Sezione Caricamento  -->
     <div class="spinner" v-else>
@@ -36,6 +44,7 @@ export default {
   data() {
     return {
       disc: [],
+      genereSelezionato: "All",
     };
   },
   mounted() {
@@ -43,9 +52,23 @@ export default {
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((response) => {
         this.disc = response.data.response;
-        console.log(this.disc);
+        // console.log(this.disc);
         // console.log(this.disc[0]);
       });
+  },
+  methods: {
+    cambioGenere() {
+      console.log(this.genereSelezionato);
+      if (this.genereSelezionato === "All") {
+        return this.disc;
+      }
+      return this.disc.filter((item) =>
+        item.genre.includes(this.genereSelezionato)
+      );
+      // inserire il filtro dell'array in base al genere selezinato
+      // una volta che funziona questo faccio un commit e procedo a fare
+      // il componente con l $emit
+    },
   },
 };
 </script>
@@ -66,7 +89,7 @@ export default {
       padding-right: 10px;
     }
     select {
-      border: 1px solid black;
+      border: 1px solid $bg-secondary;
       background-color: $bg-secondary;
       color: white;
       border-radius: 10px;
