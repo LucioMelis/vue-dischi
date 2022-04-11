@@ -1,9 +1,21 @@
 <template>
   <div class="container-main">
+    <!-- Sezione Option -->
+    <div class="select-disc">
+      <h4>Seleziona il genere:</h4>
+      <select name="disc-option">
+        <option value="all">All</option>
+        <option value="pop">Pop</option>
+        <option value="metal">Metal</option>
+        <option value="rock">Rock</option>
+        <option value="jazz">Jazz</option>
+      </select>
+    </div>
+    <!-- Sezione Dischi  -->
     <div v-if="disc.length > 0" class="container-card">
       <CardDisc v-for="(song, index) in disc" :key="index" :songdisc="song" />
     </div>
-    <!-- Bonus da ultimare  -->
+    <!-- Sezione Caricamento  -->
     <div class="spinner" v-else>
       <Loading />
     </div>
@@ -31,8 +43,8 @@ export default {
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((response) => {
         this.disc = response.data.response;
-        // console.log(this.disc);
-        console.log(this.disc[0]);
+        console.log(this.disc);
+        // console.log(this.disc[0]);
       });
   },
 };
@@ -44,13 +56,30 @@ export default {
 .container-main {
   min-height: calc(100vh - 74px);
   background-color: $bg-primary;
+  .select-disc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    h4 {
+      color: $text-color;
+      padding-right: 10px;
+    }
+    select {
+      border: 1px solid black;
+      background-color: $bg-secondary;
+      color: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+  }
   .container-card {
     display: flex;
     flex-wrap: wrap;
     gap: 15px 30px;
     width: 70%;
     margin: auto;
-    padding: 30px 0;
+    padding: 10px 0;
   }
   .spinner {
     display: flex;
