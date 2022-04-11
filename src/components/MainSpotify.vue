@@ -1,7 +1,10 @@
 <template>
   <div class="container-main">
     <!-- Sezione Option -->
-    <SelectSearch @ricerca="filtroGenere" />
+    <div class="select-disc">
+      <h4>Seleziona il genere:</h4>
+      <SelectSearch @ricerca="filtroGenere" />
+    </div>
     <!-- Sezione Dischi  -->
     <div v-if="disc.length > 0" class="container-card">
       <CardDisc
@@ -47,7 +50,7 @@ export default {
   },
   methods: {
     filtroGenere(genereSelezionato) {
-      console.log(genereSelezionato);
+      // console.log(genereSelezionato);
       this.genere = genereSelezionato;
     },
   },
@@ -68,6 +71,16 @@ export default {
 .container-main {
   min-height: calc(100vh - 74px);
   background-color: $bg-primary;
+  .select-disc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    h4 {
+      color: $text-color;
+      padding-right: 10px;
+    }
+  }
   .container-card {
     display: flex;
     flex-wrap: wrap;
