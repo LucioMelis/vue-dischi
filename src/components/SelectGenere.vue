@@ -2,7 +2,7 @@
   <select
     name="disc-option"
     v-model="genereSelezionato"
-    @change="$emit('ricerca', genereSelezionato)"
+    @change="$emit('ricercaGenere', genereSelezionato)"
   >
     <option value="All">All</option>
     <option value="Pop">Pop</option>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "SelectSearch",
+  name: "SelectGenere",
   data() {
     return {
       genereSelezionato: "All",

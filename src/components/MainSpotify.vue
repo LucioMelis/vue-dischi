@@ -4,7 +4,7 @@
     <div class="select-disc">
       <h4>Seleziona il genere:</h4>
       <!-- Sezione Select Genere  -->
-      <SelectSearch @ricerca="filtroGenere" />
+      <SelectGenere @ricercaGenere="filtroGenere" />
       <!-- Sezione Select Artista  -->
       <h4>Seleziona Artista:</h4>
       <SelectAuthor :artist="arrayArtisti" @ricercaArtista="filtroArtista" />
@@ -12,7 +12,7 @@
     <!-- Sezione Dischi  -->
     <div v-if="disc.length > 0" class="container-card">
       <CardDisc
-        v-for="(song, index) in cambioGenere"
+        v-for="(song, index) in FiltroDischi"
         :key="index"
         :songdisc="song"
       />
@@ -28,7 +28,7 @@
 import CardDisc from "../components/CardDisc.vue";
 import axios from "axios";
 import Loading from "../components/Loading.vue";
-import SelectSearch from "../components/SelectSearch.vue";
+import SelectGenere from "../components/SelectGenere.vue";
 import SelectAuthor from "../components/SelectAuthor.vue";
 
 export default {
@@ -36,7 +36,7 @@ export default {
   components: {
     CardDisc,
     Loading,
-    SelectSearch,
+    SelectGenere,
     SelectAuthor,
   },
   data() {
@@ -73,7 +73,10 @@ export default {
   },
 
   computed: {
-    cambioGenere() {
+    FiltroDischi() {
+      // Sono riuscito ad inserire a filtrare i generi,
+      // con la soluzione di Adriano sono riuscito a filtrare
+      // anche gli autori (che non riuscivo a filtrare)
       let FiltroGenerale =
         this.genere === "All"
           ? this.disc
