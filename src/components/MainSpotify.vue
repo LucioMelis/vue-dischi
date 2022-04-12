@@ -74,10 +74,14 @@ export default {
 
   computed: {
     cambioGenere() {
-      if (this.genere === "All" || this.author === "All") {
-        return this.disc;
+      let FiltroGenerale =
+        this.genere === "All"
+          ? this.disc
+          : this.disc.filter((item) => item.genre.includes(this.genere));
+      if (this.author === "All") {
+        return FiltroGenerale;
       }
-      return this.disc.filter((item) => item.genre.includes(this.genere));
+      return FiltroGenerale.filter((item) => item.author.includes(this.author));
     },
   },
 };
