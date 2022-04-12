@@ -71,12 +71,10 @@ export default {
 
   computed: {
     cambioGenere() {
-      if (this.genere === "All") {
+      if (this.genere === "All" || this.author === "All") {
         return this.disc;
       }
-      return this.disc.filter((item) => {
-        return item.genre.includes(this.genere);
-      });
+      return this.disc.filter((item) => item.genre.includes(this.genere));
     },
   },
 };
