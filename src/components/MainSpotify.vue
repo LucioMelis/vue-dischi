@@ -3,7 +3,11 @@
     <!-- Sezione Option -->
     <div class="select-disc">
       <h4>Seleziona il genere:</h4>
+      <!-- Sezione Select Genere  -->
       <SelectSearch @ricerca="filtroGenere" />
+      <!-- Sezione Select Artista  -->
+      <h4>Seleziona Artista:</h4>
+      <SelectAuthor :artist="arrayArtisti" @ricercaArtista="filtroArtista" />
     </div>
     <!-- Sezione Dischi  -->
     <div v-if="disc.length > 0" class="container-card">
@@ -25,6 +29,7 @@ import CardDisc from "../components/CardDisc.vue";
 import axios from "axios";
 import Loading from "../components/Loading.vue";
 import SelectSearch from "../components/SelectSearch.vue";
+import SelectAuthor from "../components/SelectAuthor.vue";
 
 export default {
   name: "MainSpotify",
@@ -32,11 +37,14 @@ export default {
     CardDisc,
     Loading,
     SelectSearch,
+    SelectAuthor,
   },
   data() {
     return {
       disc: [],
+      arrayArtisti: [],
       genere: "",
+      author: "",
     };
   },
   mounted() {
@@ -44,6 +52,8 @@ export default {
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((response) => {
         this.disc = response.data.response;
+        this.disc.filter((item) => this.arrayArtisti.push(item.author));
+        // console.log(this.arrayArtisti);
         // console.log(this.disc);
         // console.log(this.disc[0]);
       });
@@ -53,13 +63,20 @@ export default {
       // console.log(genereSelezionato);
       this.genere = genereSelezionato;
     },
+    filtroArtista(artistaSelezionato) {
+      console.log(artistaSelezionato);
+      this.author = artistaSelezionato;
+    },
   },
+
   computed: {
     cambioGenere() {
       if (this.genere === "All") {
         return this.disc;
       }
-      return this.disc.filter((item) => item.genre.includes(this.genere));
+      return this.disc.filter((item) => {
+        return item.genre.includes(this.genere);
+      });
     },
   },
 };
