@@ -56,6 +56,9 @@ export default {
         // console.log(this.arrayArtisti);
         // console.log(this.disc);
         // console.log(this.disc[0]);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   },
   methods: {
@@ -64,7 +67,7 @@ export default {
       this.genere = genereSelezionato;
     },
     filtroArtista(artistaSelezionato) {
-      console.log(artistaSelezionato);
+      // console.log(artistaSelezionato);
       this.author = artistaSelezionato;
     },
   },
@@ -93,7 +96,7 @@ export default {
     padding: 10px 0;
     h4 {
       color: $text-color;
-      padding-right: 10px;
+      padding: 0 10px;
     }
   }
   .container-card {
